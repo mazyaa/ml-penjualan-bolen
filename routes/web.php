@@ -17,6 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+<<<<<<< HEAD
 Route::get('/products', function () {
     return view('products');
 })->middleware(['auth'])->name('products');
@@ -25,4 +26,6 @@ Route::get('/sales-history', function () {
     return view('sales-history');
 })->middleware(['auth'])->name('sales.history');
 
+=======
+>>>>>>> abbd64e3b7fce6c42c45fedfffeb3026645e2067
 require __DIR__.'/auth.php';
