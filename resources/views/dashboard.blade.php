@@ -7,7 +7,6 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-<<<<<<< HEAD
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <div class="bg-blue-500 text-white rounded-lg shadow-md p-6 text-center">
@@ -64,13 +63,4 @@
         });
     </script>
     @endpush
-=======
-            <div class="bg-white overflow-hidden shadow-xs sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
->>>>>>> abbd64e3b7fce6c42c45fedfffeb3026645e2067
 </x-app-layout>
