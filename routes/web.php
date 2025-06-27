@@ -25,4 +25,4 @@ Route::get('/sales-history', function () {
     return view('sales-history');
 })->middleware(['auth'])->name('sales.history');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
