@@ -1,75 +1,66 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-2xl font-bold text-gray-800">Dashboard Penjualan</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
     </x-slot>
 
-    <div class="py-10 px-6 max-w-6xl mx-auto space-y-8">
-        <!-- Ringkasan Angka -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white shadow-md rounded-xl p-6 text-center">
-                <p class="text-sm text-gray-500">Jumlah Produk</p>
-                <h3 class="text-2xl font-bold text-gray-700">{{ $totalProduk }}</h3>
-            </div>
-            <div class="bg-white shadow-md rounded-xl p-6 text-center">
-                <p class="text-sm text-gray-500">Total Penjualan</p>
-                <h3 class="text-2xl font-bold text-gray-700">Rp {{ number_format($totalPenjualan) }}</h3>
-            </div>
-            <div class="bg-white shadow-md rounded-xl p-6 text-center">
-                <p class="text-sm text-gray-500">Total Keuntungan</p>
-                <h3 class="text-2xl font-bold text-gray-700">Rp {{ number_format($totalKeuntungan) }}</h3>
-            </div>
-            {{-- <div class="bg-white shadow-md rounded-xl p-6 text-center">
-                <p class="text-sm text-gray-500">Transaksi Minggu Ini</p>
-                <h3 class="text-2xl font-bold text-gray-700">{{ $jumlahTransaksiMinggu }}</h3>
-            </div> --}}
-        </div>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-        <!-- Grafik Penjualan -->
-        <div class="bg-white p-8 rounded-xl shadow-lg">
-            <h3 class="text-lg font-semibold text-gray-700 mb-4">Grafik Penjualan (7 Hari Terakhir)</h3>
-            <canvas id="salesChart" height="120"></canvas>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="bg-blue-500 text-white rounded-lg shadow-md p-6 text-center">
+                    <h3 class="text-lg font-semibold">Jumlah Produk</h3>
+                    <p class="text-3xl font-bold mt-2">7</p>
+                </div>
+                <div class="bg-cyan-500 text-white rounded-lg shadow-md p-6 text-center">
+                    <h3 class="text-lg font-semibold">Total Penjualan</h3>
+                    <p class="text-3xl font-bold mt-2">7</p>
+                </div>
+                <div class="bg-green-500 text-white rounded-lg shadow-md p-6 text-center">
+                    <h3 class="text-lg font-semibold">Total Keuntungan</h3>
+                    <p class="text-3xl font-bold mt-2">Rp 4.337.000,00</p>
+                </div>
+            </div>
+
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <h3 class="text-xl font-semibold mb-4">Perkiraan Penjualan Selama Seminggu Kedepan</h3>
+                    <canvas id="salesChart"></canvas>
+                </div>
+            </div>
+
         </div>
     </div>
 
     @push('scripts')
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-            const ctx = document.getElementById('salesChart').getContext('2d');
-            const salesChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: @json($labels),
-                    datasets: [{
-                        label: 'Total Penjualan',
-                        data: @json($data),
-                        backgroundColor: 'rgba(59, 130, 246, 0.7)',
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return 'Rp ' + new Intl.NumberFormat('id-ID').format(value);
-                                }
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            labels: {
-                                font: {
-                                    weight: 'bold'
-                                }
-                            }
-                        }
-                    }
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('salesChart');
+
+            new Chart(ctx, {
+              type: 'line',
+              data: {
+                // Label dan data ini nantinya akan didapat dari API Anda
+                labels: ['29/08/2024', '30/08/2024', '31/08/2024', '01/09/2024', '02/09/2024', '03/09/2024', '04/09/2024'],
+                datasets: [{
+                  label: 'Perkiraan Penjualan',
+                  data: [210, 90, 210, 320, 310, 325, 175], // Data contoh dari PDF
+                  borderColor: 'rgb(59, 130, 246)', // Warna biru
+                  tension: 0.1
+                }]
+              },
+              options: {
+                responsive: true,
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
                 }
+              }
             });
-        </script>
+        });
+    </script>
     @endpush
 </x-app-layout>
