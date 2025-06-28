@@ -5,23 +5,15 @@
 
     <div class="py-10 px-6 max-w-6xl mx-auto space-y-8">
         <!-- Ringkasan Angka -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white shadow-md rounded-xl p-6 text-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white shadow-md rounded-xl p-6 text-center border-b-4 border-yellow-400">
                 <p class="text-sm text-gray-500">Jumlah Produk</p>
                 <h3 class="text-2xl font-bold text-gray-700">{{ $totalProduk }}</h3>
             </div>
-            <div class="bg-white shadow-md rounded-xl p-6 text-center">
+            <div class="bg-white shadow-md rounded-xl p-6 text-center border-b-4 border-blue-400">
                 <p class="text-sm text-gray-500">Total Penjualan</p>
                 <h3 class="text-2xl font-bold text-gray-700">Rp {{ number_format($totalPenjualan) }}</h3>
             </div>
-            <div class="bg-white shadow-md rounded-xl p-6 text-center">
-                <p class="text-sm text-gray-500">Total Keuntungan</p>
-                <h3 class="text-2xl font-bold text-gray-700">Rp {{ number_format($totalKeuntungan) }}</h3>
-            </div>
-            {{-- <div class="bg-white shadow-md rounded-xl p-6 text-center">
-                <p class="text-sm text-gray-500">Transaksi Minggu Ini</p>
-                <h3 class="text-2xl font-bold text-gray-700">{{ $jumlahTransaksiMinggu }}</h3>
-            </div> --}}
         </div>
 
         <!-- Grafik Penjualan -->
