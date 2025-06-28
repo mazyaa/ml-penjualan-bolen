@@ -8,8 +8,7 @@
 
         {{-- FORM INPUT --}}
         <div class="mb-8 bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200">
-            <h4 class="text-2xl font-bold text-gray-700 mb-5 flex items-center"><span class="mr-2">📝</span>Tambah Data
-                Prediksi</h4>
+            <h4 class="text-2xl font-bold text-gray-700 mb-5 flex items-center"><span class="mr-2">📝</span>Tambah Data</h4>
 
             <form id="predictForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -81,8 +80,8 @@
         </div>
 
         {{-- TABEL --}}
-        <h4 class="text-2xl mb-5 font-extrabold text-gray-800">📃 Riwayat Hasil Prediksi Stok</h4>
         <div class="bg-white shadow-lg rounded-xl overflow-hidden p-5">
+            <h4 class="text-2xl font-extrabold text-gray-800">📃 Riwayat Hasil Klasifikasi Stok</h4>
             <table id="salesTable" class="min-w-full text-sm text-left text-gray-600">
                 <thead class="bg-gray-200 text-sm uppercase text-gray-700">
                     <tr>
