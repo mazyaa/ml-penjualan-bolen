@@ -145,7 +145,7 @@
     <section id="tentang" class="py-10 bg-white">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
-                <span class="inline-block text-blue-600 text-xl font-bold mb-3">Tentang Kami</span>
+                <span class="inline-block text-blue-600 text-xl font-bold mb-3">Tentang Model RFC</span>
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Sistem Klasifikasi Produk Menggunakan Model Random
                     Forest Classifier</h2>
                 <p class="text-gray-600 max-w-4xl mx-auto">
@@ -214,8 +214,8 @@
     <section id="fitur" class="py-10 bg-blue-50">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
-                <span class="inline-block text-blue-600 text-xl font-bold mb-3">Fitur Kami</span>
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Kemampuan Sistem</h2>
+                <span class="inline-block text-blue-600 text-xl font-bold mb-3">Fitur Website</span>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Fitur-Fitur Cerdas untuk Prediksi Stok Akurat</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">
                     Semua yang Anda butuhkan untuk memprediksi status stok dan membantu pengambilan keputusan produksi
                     Bolen Crispy secara lebih cerdas dan efisien.
