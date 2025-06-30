@@ -8,7 +8,8 @@
 
         {{-- FORM INPUT --}}
         <div class="mb-8 bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200">
-            <h4 class="text-2xl font-bold text-gray-700 mb-5 flex items-center"><span class="mr-2">📝</span>Tambah Data</h4>
+            <h4 class="text-2xl font-bold text-gray-700 mb-5 flex items-center"><span class="mr-2">📝</span>Tambah Data
+            </h4>
 
             <form id="predictForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -22,7 +23,7 @@
                 {{-- Hari --}}
                 <div>
                     <label class="block text-sm font-semibold text-gray-600">📆 Hari</label>
-                    <select name="hari" required
+                    <select name="hari" required id="hari"
                         class="mt-2 w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
                         <option value="1">Senin</option>
                         <option value="2">Selasa</option>
@@ -115,49 +116,56 @@
                     }
                 });
 
-                // Inisialisasi harga satuan otomatis
-                const hargaProduk = {
-                    0: 23000, // Bolen Banana
-                    1: 12000, // Bolen Cokju (Mini)
-                    2: 23000, // Bolen Coklat
-                    3: 12000, // Bolen Coklat Keju
-                    4: 12000, // Bolen Keju Mini
-                    5: 23000, // Bolen Pisang Coklat
-                    6: 23000 // Bolen Proltape
+                const dayMap = {
+                    0: 7,
+                    1: 1,
+                    2: 2,
+                    3: 3,
+                    4: 4,
+                    5: 5,
+                    6: 6
                 };
 
-                $('#nama_produk').on('change', function() {
-                    let selected = $(this).val();
-                    $('#harga_satuan').val(hargaProduk[selected]);
-                }).trigger('change'); // Default load awal
+                const productMap = {
+                    1: 0, // Senin -> Bolen Banana
+                    2: 6, // Selasa -> Bolen Proltape
+                    3: 3, // Rabu -> Bolen Coklat Keju
+                    4: 1, // Kamis -> Bolen Cokju (Mini)
+                    5: 4, // Jumat -> Bolen Keju Mini
+                    6: 5, // Sabtu -> Bolen Pisang Coklat
+                    7: 2 // Minggu -> Bolen Coklat
+                };
 
-                // Auto set Hari berdasarkan tanggal yang dipilih
+                const hargaProduk = {
+                    0: 23000,
+                    1: 12000,
+                    2: 23000,
+                    3: 12000,
+                    4: 12000,
+                    5: 23000,
+                    6: 23000
+                };
+
                 $('input[name="tanggal"]').on('change', function() {
                     const selectedDate = new Date($(this).val());
-                    const dayOfWeek = selectedDate.getDay(); // Javascript: 0 = Minggu, 1 = Senin, dst
-
-                    // Mapping Javascript Day ke value Hari (1-7)
-                    const dayMap = {
-                        0: 7, // Minggu
-                        1: 1, // Senin
-                        2: 2, // Selasa
-                        3: 3, // Rabu
-                        4: 4, // Kamis
-                        5: 5, // Jumat
-                        6: 6 // Sabtu
-                    };
-
+                    const dayOfWeek = selectedDate.getDay(); // 0-6
                     const hariValue = dayMap[dayOfWeek];
 
-                    if (hariValue) {
-                        $('select[name="hari"]').val(hariValue);
-                    } else {
-                        $('select[name="hari"]').val('');
-                    }
+                    // Set Hari
+                    let hari = $('#hari').val(hariValue);
 
-                    // Bikin Hari jadi readonly (disable)
-                    $('select[name="hari"]').prop('disabled', true);
+                    // Set Nama Produk by Hari
+                    const produkValue = productMap[hariValue];
+                    $('#nama_produk').val(produkValue);
+
+                    // Set Harga by Produk
+                    $('#harga_satuan').val(hargaProduk[produkValue]);
                 });
+
+                $('#nama_produk').on('change', function() {
+                    let produkId = $(this).val();
+                    $('#harga_satuan').val(hargaProduk[produkId]);
+                }).trigger('change');
 
 
                 // Init DataTable
